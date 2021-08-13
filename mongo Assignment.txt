@@ -1,0 +1,138 @@
+MongoDB shell version v5.0.2
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("08aa30d6-5ad4-49f4-b82f-813de05c5bb0") }
+MongoDB server version: 5.0.2
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+We recommend you begin using "mongosh".
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2021-08-13T18:30:21.902+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> use assignment
+switched to db assignment
+> show Colections
+uncaught exception: Error: don't know how to show [Colections] :
+shellHelper.show@src/mongo/shell/utils.js:1211:11
+shellHelper@src/mongo/shell/utils.js:838:15
+@(shellhelp2):1:1
+> show collections
+users
+> db.users.insert([{first_name:"anu",last_name:"yadav"},{first_name:"abhi", last_name:"sillu"}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.users.find({})
+{ "_id" : ObjectId("61169bebcf44ac4d6fe326a2"), "first_name" : "Bhaskar", "last_name" : "Rai", "email" : "bhaskar9893@gmail.com", "gender" : "male", "Ip_adress" : "127.0.0.1", "Age" : "23" }
+{ "_id" : ObjectId("6116a28a1453e7a1da7230b9"), "first_name" : "balram", "last_name" : "kurmi", "email" : "balli@1234", "gender" : "male", "Ip_adress" : "127.0.0.1", "age" : "25" }
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88d"), "first_name" : "anu", "last_name" : "yadav" }
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88e"), "first_name" : "abhi", "last_name" : "sillu" }
+> db.users.find({}).pretty()
+{
+        "_id" : ObjectId("61169bebcf44ac4d6fe326a2"),
+        "first_name" : "Bhaskar",
+        "last_name" : "Rai",
+        "email" : "bhaskar9893@gmail.com",
+        "gender" : "male",
+        "Ip_adress" : "127.0.0.1",
+        "Age" : "23"
+}
+{
+        "_id" : ObjectId("6116a28a1453e7a1da7230b9"),
+        "first_name" : "balram",
+        "last_name" : "kurmi",
+        "email" : "balli@1234",
+        "gender" : "male",
+        "Ip_adress" : "127.0.0.1",
+        "age" : "25"
+}
+{
+        "_id" : ObjectId("6116aa720ae8f8d06b00b88d"),
+        "first_name" : "anu",
+        "last_name" : "yadav"
+}
+{
+        "_id" : ObjectId("6116aa720ae8f8d06b00b88e"),
+        "first_name" : "abhi",
+        "last_name" : "sillu"
+}
+> db.users.findOne({})
+{
+        "_id" : ObjectId("61169bebcf44ac4d6fe326a2"),
+        "first_name" : "Bhaskar",
+        "last_name" : "Rai",
+        "email" : "bhaskar9893@gmail.com",
+        "gender" : "male",
+        "Ip_adress" : "127.0.0.1",
+        "Age" : "23"
+}
+> db.users.update({first_name:"bhaskar"},{$set:{second_name:"chotu"}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.users.find({})
+{ "_id" : ObjectId("61169bebcf44ac4d6fe326a2"), "first_name" : "Bhaskar", "last_name" : "Rai", "email" : "bhaskar9893@gmail.com", "gender" : "male", "Ip_adress" : "127.0.0.1", "Age" : "23" }
+{ "_id" : ObjectId("6116a28a1453e7a1da7230b9"), "first_name" : "balram", "last_name" : "kurmi", "email" : "balli@1234", "gender" : "male", "Ip_adress" : "127.0.0.1", "age" : "25" }
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88d"), "first_name" : "anu", "last_name" : "yadav" }
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88e"), "first_name" : "abhi", "last_name" : "sillu" }
+> db.users.update({first_name:"Bhaskar"},{$set:{second_name:"chotu"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.find({})
+{ "_id" : ObjectId("61169bebcf44ac4d6fe326a2"), "first_name" : "Bhaskar", "last_name" : "Rai", "email" : "bhaskar9893@gmail.com", "gender" : "male", "Ip_adress" : "127.0.0.1", "Age" : "23", "second_name" : "chotu" }
+{ "_id" : ObjectId("6116a28a1453e7a1da7230b9"), "first_name" : "balram", "last_name" : "kurmi", "email" : "balli@1234", "gender" : "male", "Ip_adress" : "127.0.0.1", "age" : "25" }
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88d"), "first_name" : "anu", "last_name" : "yadav" }
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88e"), "first_name" : "abhi", "last_name" : "sillu" }
+> db.users.updateMany({gender:"male"},{$set:{gender:"female"}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.users.find({})
+{ "_id" : ObjectId("61169bebcf44ac4d6fe326a2"), "first_name" : "Bhaskar", "last_name" : "Rai", "email" : "bhaskar9893@gmail.com", "gender" : "female", "Ip_adress" : "127.0.0.1", "Age" : "23", "second_name" : "chotu" }
+{ "_id" : ObjectId("6116a28a1453e7a1da7230b9"), "first_name" : "balram", "last_name" : "kurmi", "email" : "balli@1234", "gender" : "female", "Ip_adress" : "127.0.0.1", "age" : "25" }
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88d"), "first_name" : "anu", "last_name" : "yadav" }
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88e"), "first_name" : "abhi", "last_name" : "sillu" }
+> db.users.delete({gender:"female"})
+uncaught exception: TypeError: db.users.delete is not a function :
+@(shell):1:1
+> db.users.delete({gender:"female"})
+uncaught exception: TypeError: db.users.delete is not a function :
+@(shell):1:1
+> db.users.deleteMany({gender:"female"})
+{ "acknowledged" : true, "deletedCount" : 2 }
+> db.users.find({})
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88d"), "first_name" : "anu", "last_name" : "yadav" }
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88e"), "first_name" : "abhi", "last_name" : "sillu" }
+> db.users.deleteOne({first_name:"abhi"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.users.find({})
+{ "_id" : ObjectId("6116aa720ae8f8d06b00b88d"), "first_name" : "anu", "last_name" : "yadav" }
+> db.dropDatabase(users)
+uncaught exception: ReferenceError: users is not defined :
+@(shell):1:1
+> db.dropDatabase()
+{ "ok" : 1 }
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+>
+
